@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewsFlow Pro — Breaking News, Latest Headlines</title>
+  <meta name="description"
+    content="Stay updated with the latest news in technology, sports, business, entertainment and more." />
+  <meta name="theme-color" content="#0d1117" />
+
+
+  <!-- Google Fonts: Syne (UI headings) + Lora (article text) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="icon"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABSklEQVR4AaSSv0vEQBCFJ+HAX6DVaaeVxICCje3ZWCgGO7W2ErQ89I9QrtTWWuwkooWN18k1gmIMFqKdHAgKeiqnkW9xw24S4cDAl5l5b/Ztirjyz6cwILo6S0YqGxZoRXflAjg4uxbmdtHwsoYVoBdOdoPsnmit7C8kppkG6MOY3EY10Vpv2RMzxL2d8hM4bYXSCTuP+7L3fSGhN5yA+oKusQnpBKdUEq+/L4UvVAE00F3boliYWtJuWx6DFYBgHmAGtI+bS1oZODpWVb+sgPfqpoA2qczP83O0CrNHUAGk/8V141zil9dCVMBoI3JgpieQIlYHl2R9aFlW3EmLIH5wwJXf576+7bw1YzXpn6b1dCdoUD+oKo9XMzp0qJAGMGCwXFmsqYPJ1yeyAo2GHarGCkBkwbwNDdDw6E1yAZj++LTDsgkaXpYfAAAA//8FY5nHAAAABklEQVQDAEt4yiHd6aIgAAAAAElFTkSuQmCC"
+    type="image/x-icon">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ═══════════════════════════ ADSENSE ═══════════════════════════════ -->
+  <!-- Uncomment and replace publisher ID after AdSense approval: -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+    crossorigin="anonymous"></script>
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+     DEMO MODE BANNER
+═══════════════════════════════════ -->
+  <div id="demo-bar">
+    🎨 <strong>Demo Mode</strong> — Showing sample articles.
+    <a href="javascript:void(0)" onclick="openModal()">Add your free NewsAPI key</a>
+    to load live news · Get it free at
+    <a href="https://newsapi.org/register" target="_blank" rel="noopener">newsapi.org</a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     HEADER
+═══════════════════════════════════ -->
+  <header id="hdr">
+    <div class="hdr-inner">
+
+      <!-- Logo -->
+      <div class="logo" onclick="goHome()">
+        <span>📰</span>
+        <span class="logo-text">NewsFlow<span style="color:var(--accent)">Pro</span></span>
+        <span class="logo-dot"></span>
+      </div>
+
+      <!-- Search -->
+      <div class="srch-wrap">
+        <input type="text" id="srch" placeholder="Search news…" autocomplete="off" />
+        <button class="srch-btn" onclick="doSearch()" title="Search">🔍</button>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <button class="key-btn" onclick="openModal()" title="API Key">
+          🔑<span class="kb-txt">API Key</span>
+        </button>
+        <button class="dark-btn" onclick="toggleDark()" title="Toggle dark mode">
+          <span id="dk-ico">🌙</span>
+          <div class="sw" id="sw"></div>
+          <span class="dk-txt" id="dk-lbl">Dark</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════
+     FILTER NAVBAR
+═══════════════════════════════════ -->
+  <nav id="filters" aria-label="News filters">
+    <div class="flt-inner">
+
+      <!-- Country -->
+      <span class="flt-lbl">Country</span>
+      <button class="flt-btn on" data-t="country" data-v="in" onclick="setFilter('country','in')">🇮🇳 India</button>
+      <button class="flt-btn" data-t="country" data-v="us" onclick="setFilter('country','us')">🇺🇸 USA</button>
+      <button class="flt-btn" data-t="country" data-v="gb" onclick="setFilter('country','gb')">🇬🇧 UK</button>
+      <button class="flt-btn" data-t="country" data-v="ca" onclick="setFilter('country','ca')">🇨🇦 Canada</button>
+      <button class="flt-btn" data-t="country" data-v="au" onclick="setFilter('country','au')">🇦🇺 Australia</button>
+
+      <div class="flt-sep"></div>
+
+      <!-- Category -->
+      <span class="flt-lbl">Category</span>
+      <button class="flt-btn on" data-t="cat" data-v="general" onclick="setFilter('cat','general')">🌐 All</button>
+      <button class="flt-btn" data-t="cat" data-v="technology" onclick="setFilter('cat','technology')">💻 Tech</button>
+      <button class="flt-btn" data-t="cat" data-v="sports" onclick="setFilter('cat','sports')">⚽ Sports</button>
+      <button class="flt-btn" data-t="cat" data-v="business" onclick="setFilter('cat','business')">💼 Business</button>
+      <button class="flt-btn" data-t="cat" data-v="entertainment" onclick="setFilter('cat','entertainment')">🎬
+        Entertainment</button>
+      <button class="flt-btn" data-t="cat" data-v="health" onclick="setFilter('cat','health')">🏥 Health</button>
+      <button class="flt-btn" data-t="cat" data-v="science" onclick="setFilter('cat','science')">🔬 Science</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+     TOP AD SLOT
+═══════════════════════════════════ -->
+  <div class="ad-top">
+    <div class="ad-slot">
+      <!--
+    ADSENSE TOP BANNER — Replace and uncomment:
+    <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="1234567890"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    -->
+      📢 Advertisement — Top Banner (728×90)
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════ -->
+  <div id="home">
+    <div id="wrap">
+
+      <!-- Trending Keywords -->
+      <section id="trending" aria-label="Trending topics">
+        <div class="trend-lbl">🔥 Trending</div>
+        <div class="trend-tags" id="trend-tags"><!-- JS renders --></div>
+      </section>
+
+      <!-- Section header -->
+      <div class="sec-head">
+        <h2 class="sec-title" id="sec-ttl">Latest Headlines</h2>
+        <span class="sec-count" id="sec-cnt"></span>
+      </div>
+
+      <!-- News Grid -->
+      <div id="grid" role="main" aria-label="News articles">
+
+        <!-- Skeleton loading (visible by default) -->
+        <div class="skeletons" id="skels">
+          <!-- 6 skeleton cards generated by JS -->
+        </div>
+
+        <!-- Error state -->
+        <div id="err" role="alert">
+          <div class="err-ico">📡</div>
+          <div class="err-ttl">Could not load news</div>
+          <p class="err-msg" id="err-msg">Unable to fetch headlines. Check your API key or internet connection.</p>
+          <button class="retry-btn" onclick="fetchNews()">🔄 Try Again</button>
+        </div>
+
+        <!-- No results -->
+        <div id="nores">
+          <div class="nores-ico">🔍</div>
+          <div class="nores-ttl">No results found</div>
+          <p class="nores-sub">Try a different search term or category</p>
+        </div>
+
+      </div><!-- /#grid -->
+
+      <!-- In-feed Ad (injected after 6th card) -->
+      <div id="feed-ad" style="display:none;margin:20px 0">
+        <div class="ad-feed">
+          <div class="ad-lbl">Sponsored</div>
+          <!--
+        ADSENSE IN-FEED — Replace and uncomment:
+        <ins class="adsbygoogle" style="display:block"
+             data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="0987654321"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+        -->
+          📢 In-Feed Native Advertisement
+        </div>
+      </div>
+
+      <!-- Load More -->
+      <div id="lm-wrap"><button id="lm-btn" onclick="loadMore()">Load More ↓</button></div>
+
+    </div><!-- /#wrap -->
+  </div><!-- /#home -->
+
+  <!-- ═══════════════════════════════════
+     FULL ARTICLE PAGE (SPA)
+═══════════════════════════════════ -->
+  <div id="art-page" aria-label="Full article">
+
+    <button class="back-btn" onclick="goHome()">← Back to Home</button>
+
+    <div class="art-cat" id="art-cat"></div>
+    <h1 class="art-title" id="art-title"></h1>
+
+    <div class="art-meta">
+      <span class="art-src" id="art-src"></span>
+      <span class="art-date" id="art-date"></span>
+      <span class="art-auth" id="art-auth"></span>
+    </div>
+
+    <img class="art-img" id="art-img" src="" alt="" onerror="this.style.display='none'" loading="lazy" />
+
+    <!-- Article Ad Slot -->
+    <div class="art-ad">
+      <div class="ad-lbl">Sponsored</div>
+      <!--
+    ADSENSE ARTICLE AD — Replace and uncomment:
+    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px"
+         data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="1122334455"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    -->
+      📢 Article Advertisement (300×250)
+    </div>
+
+    <div class="art-body" id="art-body"></div>
+
+    <a class="src-link" id="art-url" href="#" target="_blank" rel="noopener noreferrer">
+      🔗 Read Full Article on Source Site
+    </a>
+
+  </div><!-- /#art-page -->
+
+  <!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+  <footer id="ftr">
+    <div class="ftr-logo">📰 NewsFlow<span style="color:var(--accent)">Pro</span></div>
+    <p>Powered by <a href="https://newsapi.org" target="_blank" style="color:rgba(255,255,255,.5)">Balvinder Kumar</a>
+    </p>
+    <p style="margin-top:5px;font-size:.68rem;opacity:.6">
+      © 2026 NewsFlowPro · Content belongs to respective publishers · For personal/educational use
+    </p>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button id="s2t" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- API Key Modal -->
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-ttl">
+    <div class="modal-box">
+      <div class="modal-ttl" id="modal-ttl">🔑 Set NewsAPI Key</div>
+      <p class="modal-sub">
+        Get a free key at
+        <a href="https://newsapi.org/register" target="_blank" rel="noopener"
+          style="color:var(--accent)">newsapi.org/register</a>
+        (free, instant). Your key is saved only in your browser's local storage.
+      </p>
+      <input type="text" class="modal-input" id="key-inp" placeholder="Paste API key here…" autocomplete="off" />
+      <div class="modal-acts">
+        <button class="btn-p" onclick="saveKey()">💾 Save & Load Live News</button>
+        <button class="btn-s" onclick="closeModal()">Use Demo Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════ -->
+
+  <script src="Script.js"></script>
+
+</body>
+
+</html>

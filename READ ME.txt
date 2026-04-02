@@ -1,0 +1,61 @@
+<!--
+=============================================================================
+  📰 NewsFlow Pro — Modern News Website
+=============================================================================
+  SETUP INSTRUCTIONS:
+  ──────────────────────────────────────────────────────────────────────────
+  STEP 1 — Get a FREE API Key:
+     → Go to https://newsapi.org/register
+     → Sign up with your email (free, takes 30 seconds)
+     → Copy your API key from the dashboard
+
+  STEP 2 — Add your API key to this file:
+     → Open index.html in any text editor (Notepad, VS Code, etc.)
+     → Find:  API_KEY: "YOUR_API_KEY_HERE"
+     → Replace YOUR_API_KEY_HERE with your actual key (keep the quotes)
+     → Save the file
+
+  STEP 3 — Open in browser:
+     → Double-click index.html
+     → Works in Chrome, Firefox, Edge, Safari
+
+  ──────────────────────────────────────────────────────────────────────────
+  ALTERNATIVE: GNews API (also free, 100 requests/day)
+     → Go to https://gnews.io/ → Sign up → Get key
+     → Change API_PROVIDER to "gnews" in the CONFIG section
+
+  ──────────────────────────────────────────────────────────────────────────
+  WITHOUT API KEY → Site runs in DEMO MODE with 12 sample articles.
+  Click "Add your NewsAPI key" banner to add your key anytime.
+
+  ──────────────────────────────────────────────────────────────────────────
+  ADSENSE SETUP:
+     1. Apply at https://adsense.google.com
+     2. Replace "ca-pub-XXXXXXXXXX" with your Publisher ID
+     3. Replace data-ad-slot values with your actual slot IDs
+     4. Uncomment the <ins> tags in the ad slots below
+     5. After approval, ads appear in 3 zones:
+        - Top banner (728×90 leaderboard)
+        - In-feed between articles (native ad)
+        - Article page (300×250 rectangle)
+
+  ──────────────────────────────────────────────────────────────────────────
+  FEATURES INCLUDED:
+  ✅ Live news via NewsAPI.org (free tier)
+  ✅ Country filter: India, USA, UK, Canada, Australia
+  ✅ Category filter: All, Tech, Sports, Business, Entertainment, Health, Science
+  ✅ Trending keywords (click to search)
+  ✅ Full article reader — opens INSIDE site (SPA, no page reload)
+  ✅ Search bar with keyword filtering
+  ✅ Dark mode toggle (saved in browser)
+  ✅ Loading spinner + skeleton + error handling
+  ✅ AdSense-ready ad slots (3 zones)
+  ✅ Mobile-first responsive design
+  ✅ Load More pagination
+  ✅ Share button (Web Share API)
+  ✅ Demo mode with rich sample articles
+
+  Author: Built with NewsFlow Pro template
+  API Docs: https://newsapi.org/docs
+=============================================================================
+-->
